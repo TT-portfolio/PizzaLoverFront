@@ -1,9 +1,9 @@
 'use client';
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useCallback } from "react";
 import { ApiItem } from "@/types/api";
 
 interface ApiContextType {
-    settings: unknown | null; // Settings-objekt
+    fetchSettingsPage: (contentType: string) => Promise<ApiItem | null>; // Ny metod för filtrerade anrop
     loading: boolean;
     error: string | null;
 }
@@ -15,41 +15,37 @@ interface ApiProviderProps {
 }
 
 export function ApiProvider({ children }: ApiProviderProps) {
-    //const [data, setData] = useState<unknown>(null);
-    const [settings, setSettings] = useState<ApiItem | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
+    const fetchSettingsPage = useCallback(async (contentType: string): Promise<ApiItem | null> => {
+        setLoading(true);
+        setError(null);
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const res = await fetch(
-                    'https://pizzalover-g7fnhxctfsfbe6c7.westeurope-01.azurewebsites.net/umbraco/delivery/api/v1/content?'
-                );
-                if (!res.ok) throw new Error('Failed to fetch data');
-                const json = await res.json();
-                //setData(json);
+        try {
+            const res = await fetch(
+                'https://pizzalover-g7fnhxctfsfbe6c7.westeurope-01.azurewebsites.net/umbraco/delivery/api/v1/content?'
+            );
+            if (!res.ok) throw new Error('Failed to fetch data');
+            const json = await res.json();
 
-                // Filtrera och organisera data
-                const settingsItem = json.items.find((item: ApiItem) => item.contentType === 'settingsPage');
-                console.log(settingsItem);
-                setSettings(settingsItem || null);
-            } catch (err: unknown) {
-                if (err instanceof Error) {
-                    setError(err.message);
-                }else {
-                    setError('An unknown error occured')
-                }
-            } finally {
-                setLoading(false);
+            // Filtrera och returnera data baserat på contentType
+            const filteredItem = json.items.find((item: ApiItem) => item.contentType === contentType);
+            return filteredItem || null;
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('An unknown error occurred');
             }
+            return null;
+        } finally {
+            setLoading(false);
         }
-        fetchData();
     }, []);
 
     return (
-        <ApiContext.Provider value={{ settings, loading, error }}>
+        <ApiContext.Provider value={{ fetchSettingsPage, loading, error }}>
             {children}
         </ApiContext.Provider>
     );

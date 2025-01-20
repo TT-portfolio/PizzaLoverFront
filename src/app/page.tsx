@@ -1,9 +1,10 @@
-
+import SettingsComponent from "./Settingspage/page";
 
 export default function Home() {
-  return ( <div>
-    <h1>Testar</h1>
-  </div>
-    
-  );
+    return (
+        <div>
+            <SettingsComponent />
+            <h1>Testar</h1>
+        </div>
+    );
 }

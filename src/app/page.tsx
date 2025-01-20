@@ -1,10 +1,11 @@
 import SettingsComponent from "./Settingspage/page";
+import HomePage from "./HomePage/page";
 
 export default function Home() {
     return (
         <div>
             <SettingsComponent />
-            <h1>Testar</h1>
+            <HomePage />
         </div>
     );
 }

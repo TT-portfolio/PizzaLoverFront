@@ -3,7 +3,7 @@ import HomePage from "./HomePage/page";
 
 export default function Home() {
     return (
-        <div>
+        <div className="p-4">
             <SettingsComponent />
             <HomePage />
         </div>

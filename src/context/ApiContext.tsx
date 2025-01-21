@@ -3,7 +3,7 @@ import { createContext, useContext, useState, ReactNode, useCallback } from "rea
 import { ApiItem } from "@/types/api";
 
 interface ApiContextType {
-    fetchSettingsPage: (contentType: string) => Promise<ApiItem | null>; // Ny metod för filtrerade anrop
+    fetchSettingsPage: (contentType?: string) => Promise<ApiItem[] | null>; // Tillåter både filtrering och hämtning av hela listan
     loading: boolean;
     error: string | null;
 }
@@ -18,20 +18,21 @@ export function ApiProvider({ children }: ApiProviderProps) {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchSettingsPage = useCallback(async (contentType: string): Promise<ApiItem | null> => {
+    const fetchSettingsPage = useCallback(async (contentType?: string): Promise<ApiItem[] | null> => {
         setLoading(true);
         setError(null);
 
         try {
-            const res = await fetch(
-                'https://pizzalover-g7fnhxctfsfbe6c7.westeurope-01.azurewebsites.net/umbraco/delivery/api/v1/content?'
-            );
+            const baseUrl = 'https://pizzalover-g7fnhxctfsfbe6c7.westeurope-01.azurewebsites.net/umbraco/delivery/api/v1/content';
+            const url = contentType
+                ? `${baseUrl}?filter=contentType:${encodeURIComponent(contentType)}`
+                : baseUrl;
+
+            const res = await fetch(url);
             if (!res.ok) throw new Error('Failed to fetch data');
             const json = await res.json();
 
-            // Filtrera och returnera data baserat på contentType
-            const filteredItem = json.items.find((item: ApiItem) => item.contentType === contentType);
-            return filteredItem || null;
+            return json.items || null;
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(err.message);

@@ -21,3 +21,9 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.active {
+  background-color: var(--color-text-green);
+  padding: 5px;
+  border-radius: 5px;
+}

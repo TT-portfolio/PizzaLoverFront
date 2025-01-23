@@ -3,7 +3,7 @@ import { createContext, useContext, useState, ReactNode, useCallback } from "rea
 import { ApiItem } from "@/types/api";
 
 interface ApiContextType {
-    fetchSettingsPage: (contentType?: string) => Promise<ApiItem[] | null>; // Tillåter både filtrering och hämtning av hela listan
+    fetchPage: (contentType?: string) => Promise<ApiItem[] | null>; // Tillåter både filtrering och hämtning av hela listan
     loading: boolean;
     error: string | null;
 }
@@ -18,7 +18,7 @@ export function ApiProvider({ children }: ApiProviderProps) {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchSettingsPage = useCallback(async (contentType?: string): Promise<ApiItem[] | null> => {
+    const fetchPage = useCallback(async (contentType?: string): Promise<ApiItem[] | null> => {
         setLoading(true);
         setError(null);
 
@@ -46,7 +46,7 @@ export function ApiProvider({ children }: ApiProviderProps) {
     }, []);
 
     return (
-        <ApiContext.Provider value={{ fetchSettingsPage, loading, error }}>
+        <ApiContext.Provider value={{ fetchPage, loading, error }}>
             {children}
         </ApiContext.Provider>
     );

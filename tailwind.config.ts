@@ -11,6 +11,9 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "color-text-red": "var(--color-text-red)",
+        "color-text-green": "var(--color-text-green)",
+        "color-hamburger-bg": "#fdf1d2"
       },
     },
   },

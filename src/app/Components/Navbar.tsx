@@ -19,7 +19,7 @@ export default function Navbar() {
                         </div>
                     </Link>
                     {/* Länkar från tablet och uppåt */}
-                    <ul className="hidden md:flex md:gap-4 md:pr-4 text-color-text-red font-semibold text-lg ">
+                    <ul className="hidden md:flex md:gap-4 md:pr-4 text-color-text-red font-semibold text-lg items-center content-center">
                         <Link
                             href="/"
                             className={`${pathname === "/" ? "active" : ""}`}>

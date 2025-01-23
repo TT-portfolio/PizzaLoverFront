@@ -27,11 +27,6 @@ function SettingsComponent() {
   return (
     //Här skriver man ut det som kommer ifrån API
     <div>
-      <h1>
-        {typeof settings.properties.pageTitle === "string"
-          ? settings.properties.pageTitle
-          : "Default Title"}
-      </h1>
       <p>
         {typeof settings.properties.copywrite === "string"
           ? settings.properties.copywrite

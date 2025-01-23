@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ApiProvider } from "@/context/ApiContext";
+import Footer from "@/components/FooterComponent"; // Din Footer-komponent
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,10 +30,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ApiProvider>
-        {children}
+          <div className="page-container">
+            {children} 
+            <Footer /> 
+          </div>
         </ApiProvider>
       </body>
     </html>
   );
 }
-//Kollar en sak för att testa denna skall raderas

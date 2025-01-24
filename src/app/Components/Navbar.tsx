@@ -1,9 +1,12 @@
 "use client";
+
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const pathname = usePathname();
 
     return (
         <nav className="bg-background text-white shadow-lg relative">
@@ -16,10 +19,17 @@ export default function Navbar() {
                         </div>
                     </Link>
                     {/* Länkar från tablet och uppåt */}
-                    <ul className="hidden md:flex md:gap-4 md:pr-4 text-color-text-red font-semibold text-lg ">
-                        <Link href="#">Hem</Link>
-                        <Link href="#">Meny</Link>
-                        <Link href="#">Kontakt</Link>
+                    <ul className="hidden md:flex md:gap-4 md:pr-4 text-color-text-red font-semibold text-lg items-center content-center">
+                        <Link
+                            href="/"
+                            className={`${pathname === "/" ? "active" : ""}`}>
+                            Hem
+                        </Link>
+                        
+                        <Link href="/"
+                            className={`${pathname === "/Meny" ? "active" : ""}`}>Meny</Link>
+                        <Link href="/Settingspage"
+                            className={`${pathname === "/Settingspage" ? "active" : ""}`}>Settings</Link>
                     </ul>
                     {/* Hamburger Menu Button (for mobile) */}
                     <div className="md:hidden">
@@ -59,17 +69,17 @@ export default function Navbar() {
 
                         {menuOpen ? (
                             <ul
-                                className="md:hidden flex flex-col bg-color-hamburger-bg text-black font-semibold p-4 absolute top-20 right-4 left-4 text-center rounded-lg"
+                                className="md:hidden flex flex-col bg-color-hamburger-bg text-black font-semibold p-4 absolute top-20 right-4 left-1/2 text-center rounded-lg border-color-text-red border-2 border-dotted"
                                 onClick={() => setMenuOpen(!menuOpen)}>
-                                <Link href="#">Hem</Link>
-                                <Link href="#">Meny</Link>
-                                <Link href="#">Kontakt</Link>
+                                <Link href="/"
+                            className={`${pathname === "/" ? "active" : ""}`}>Hem</Link>
+                                <Link href="/"
+                            className={`${pathname === "/Meny" ? "active" : ""}`}>Meny</Link>
+                                <Link href="/Settingspage"
+                            className={`${pathname === "/Settingspage" ? "active" : ""}`}>Settings</Link>
                             </ul>
                         ) : (
                             <ul className="hidden">
-                                <Link href="#">Hem</Link>
-                                <Link href="#">Meny</Link>
-                                <Link href="#">Kontakt</Link>
                             </ul>
                         )}
                     </div>

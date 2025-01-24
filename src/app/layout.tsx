@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ApiProvider } from "@/context/ApiContext";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,11 +31,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ApiProvider>
-          <Navbar/>
+          <Navbar/>       
         {children}
+        <Footer/>
         </ApiProvider>
       </body>
     </html>
   );
 }
-//Kollar en sak för att testa denna skall raderas

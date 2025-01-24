@@ -4,16 +4,16 @@ import { useApi } from "@/context/ApiContext";
 import { ApiItem } from "@/types/api";
 
 function Footer() {
-  const { fetchSettingsPage, loading, error } = useApi();
+  const { fetchPage, loading, error } = useApi();
   const [settings, setSettings] = useState<ApiItem | null>(null);
 
   useEffect(() => {
     async function fetchData() {
-      const items = await fetchSettingsPage("settingsPage");
+      const items = await fetchPage("settingsPage");
       setSettings(items && items.length > 0 ? items[0] : null);
     }
     fetchData();
-  }, [fetchSettingsPage]);
+  }, [fetchPage]);
 
   if (loading) return null;
   if (error) return <p>Error loading footer settings</p>;

@@ -32,6 +32,7 @@ export default function RootLayout({
                 <ApiProvider>
                     <Navbar />
                     {children}
+                    <Footer/>
                 </ApiProvider>
             </body>
         </html>

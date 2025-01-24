@@ -69,7 +69,7 @@ export default function Navbar() {
 
                         {menuOpen ? (
                             <ul
-                                className="md:hidden flex flex-col bg-color-hamburger-bg text-black font-semibold p-4 absolute top-20 right-4 left-4 text-center rounded-lg"
+                                className="md:hidden flex flex-col bg-color-hamburger-bg text-black font-semibold p-4 absolute top-20 right-4 left-1/2 text-center rounded-lg border-color-text-red border-2 border-dotted"
                                 onClick={() => setMenuOpen(!menuOpen)}>
                                 <Link href="/"
                             className={`${pathname === "/" ? "active" : ""}`}>Hem</Link>

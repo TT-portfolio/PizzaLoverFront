@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useApi } from "@/context/ApiContext";
-import { ApiItem } from "@/types/api";
 import { FooterType } from "@/types/footer";
 
 function Footer() {

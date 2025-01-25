@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext, useState, ReactNode, useCallback } from "react";
 import { ApiItem } from "@/types/api";
-import { Pizza } from "@/types/pizza";
+
 
 interface ApiContextType {
     fetchPage: <T = ApiItem>(contentType?: string) => Promise<T[] | null>; // Generisk funktion

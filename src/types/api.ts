@@ -18,7 +18,6 @@ export interface ApiItem {
     ham: string | null;
     ost: string | null;
   };
-  cultures: Record<string, any>;
 }
 
 

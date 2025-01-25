@@ -15,7 +15,6 @@
 //Dessa delar används för att kalla på olika funktioner i koden
 import { useEffect, useState } from "react";
 import { useApi } from "@/context/ApiContext";
-import { ApiItem } from "@/types/api";
 import { Homepage } from "@/types/homepage";
 
 function HomePage() {
@@ -30,8 +29,6 @@ function HomePage() {
       //setSettings(items && items.length > 0 ? items[0]: null);
       if (items){
         setSettings(items[0]);
-      } else {
-        null;
       }
     }
     fetchData();

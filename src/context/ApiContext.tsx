@@ -4,7 +4,7 @@ import { ApiItem } from "@/types/api";
 
 
 interface ApiContextType {
-    fetchPage: <T = ApiItem>(contentType?: string) => Promise<T[] | null>; // Generisk funktion
+    fetchPage: <T = ApiItem>(contentType?: string) => Promise<T [] | null>; // Generisk funktion
     loading: boolean;
     error: string | null;
   }

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import PizzaCard from '../Components/PizzaCard';
-import { Pizza } from '@/types/pizza';
-import { useApi } from '@/context/ApiContext';
+import React, { useState, useEffect } from "react";
+import PizzaCard from "../Components/PizzaCard";
+import { Pizza } from "@/types/pizza";
+import { useApi } from "@/context/ApiContext";
 
 export default function Menu() {
   const { fetchPage, loading, error } = useApi();
@@ -18,15 +18,15 @@ export default function Menu() {
     }
     fetchData();
   }, [fetchPage]);
-  
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!pizzas.length) return <p>No pizzas found.</p>;
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols m-4 gap-3">
       {pizzas.map((pizza) => (
-        <PizzaCard key={pizza.id} pizza={pizza} />
+          <PizzaCard key={pizza.id} pizza={pizza} />
       ))}
     </div>
   );

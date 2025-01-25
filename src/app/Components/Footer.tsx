@@ -2,15 +2,20 @@
 import { useEffect, useState } from "react";
 import { useApi } from "@/context/ApiContext";
 import { ApiItem } from "@/types/api";
+import { FooterType } from "@/types/footer";
 
 function Footer() {
   const { fetchPage, loading, error } = useApi();
-  const [settings, setSettings] = useState<ApiItem | null>(null);
+  const [settings, setSettings] = useState<FooterType | null>(null);
 
   useEffect(() => {
     async function fetchData() {
-      const items = await fetchPage("settingsPage");
-      setSettings(items && items.length > 0 ? items[0] : null);
+      const items = await fetchPage<FooterType>("settingsPage");
+      //setSettings(items && items.length > 0 ? items[0] : null);
+      if(items)
+      {
+        setSettings(items[0])
+      }
     }
     fetchData();
   }, [fetchPage]);

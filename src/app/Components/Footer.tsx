@@ -9,8 +9,10 @@ function Footer() {
 
   useEffect(() => {
     async function fetchData() {
+      //Skickar in rätt type från start så att det inte kommer några fel
       const items = await fetchPage<FooterType>("settingsPage");
       //setSettings(items && items.length > 0 ? items[0] : null);
+      //Byggde den enklare att om det finns så sätter man den, kanske var bättre och säkrare tidigare
       if(items)
       {
         setSettings(items[0])

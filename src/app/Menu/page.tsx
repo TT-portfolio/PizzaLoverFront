@@ -11,7 +11,8 @@ export default function Menu() {
 
   useEffect(() => {
     async function fetchData() {
-      const items = await fetchPage<Pizza>("pizzaObj"); // Hämta pizzor som Pizza[]
+      // This is a shorter and better version to fetch, using type
+      const items = await fetchPage<Pizza>("pizzaObj"); // Get pizzas in []
       if (items) {
         setPizzas(items);
       }
@@ -26,6 +27,7 @@ export default function Menu() {
   return (
     <div className="grid grid-cols m-4 gap-3">
       {pizzas.map((pizza) => (
+        //Sending info to pizzaCard
           <PizzaCard key={pizza.id} pizza={pizza} />
       ))}
     </div>

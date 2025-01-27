@@ -26,8 +26,8 @@ export default function Navbar() {
                             Hem
                         </Link>
                         
-                        <Link href="/"
-                            className={`${pathname === "/Meny" ? "active" : ""}`}>Meny</Link>
+                        <Link href="/Menu"
+                            className={`${pathname === "/Menu" ? "active" : ""}`}>Meny</Link>
                         <Link href="/Settingspage"
                             className={`${pathname === "/Settingspage" ? "active" : ""}`}>Settings</Link>
                     </ul>
@@ -73,8 +73,8 @@ export default function Navbar() {
                                 onClick={() => setMenuOpen(!menuOpen)}>
                                 <Link href="/"
                             className={`${pathname === "/" ? "active" : ""}`}>Hem</Link>
-                                <Link href="/"
-                            className={`${pathname === "/Meny" ? "active" : ""}`}>Meny</Link>
+                                <Link href="/Menu"
+                            className={`${pathname === "/Menu" ? "active" : ""}`}>Meny</Link>
                                 <Link href="/Settingspage"
                             className={`${pathname === "/Settingspage" ? "active" : ""}`}>Settings</Link>
                             </ul>

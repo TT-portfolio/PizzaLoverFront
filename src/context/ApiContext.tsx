@@ -2,11 +2,12 @@
 import { createContext, useContext, useState, ReactNode, useCallback } from "react";
 import { ApiItem } from "@/types/api";
 
+
 interface ApiContextType {
-    fetchPage: (contentType?: string) => Promise<ApiItem[] | null>; // Tillåter både filtrering och hämtning av hela listan
+    fetchPage: <T = ApiItem>(contentType?: string) => Promise<T [] | null>; // Generisk funktion
     loading: boolean;
     error: string | null;
-}
+  }
 
 const ApiContext = createContext<ApiContextType | undefined>(undefined);
 
@@ -18,9 +19,10 @@ export function ApiProvider({ children }: ApiProviderProps) {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchPage = useCallback(async (contentType?: string): Promise<ApiItem[] | null> => {
-        setLoading(true);
-        setError(null);
+    const fetchPage = useCallback(
+        async <T = ApiItem>(contentType?: string): Promise<T[] | null> => {
+          setLoading(true);
+          setError(null);
 
         try {
             const baseUrl = 'https://pizzalover-g7fnhxctfsfbe6c7.westeurope-01.azurewebsites.net/umbraco/delivery/api/v1/content';

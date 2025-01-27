@@ -3,18 +3,19 @@
 //Dessa delar används för att kalla på olika funktioner i koden
 import { useEffect, useState } from "react";
 import { useApi } from "@/context/ApiContext";
-import { ApiItem } from "@/types/api";
+import { SettingsPageType } from "@/types/SettingsPage";
 
 function SettingsComponent() {
   //Denna delen kallar på API för att hämta informationen
   const { fetchPage, loading, error } = useApi();
-  const [settings, setSettings] = useState<ApiItem | null>(null);
+  const [settings, setSettings] = useState<SettingsPageType | null>(null);
 
   useEffect(() => {
     async function fetchData() {
-      const items = await fetchPage("settingsPage");
-      console.log("Filtered Items:", items); // Filtrera på settingsPage
-      setSettings(items && items.length > 0 ? items[0]: null);
+      const items = await fetchPage<SettingsPageType>("settingsPage");
+      if (items){
+        setSettings(items[0])
+      }
     }
     fetchData();
   }, [fetchPage]);

@@ -15,18 +15,21 @@
 //Dessa delar används för att kalla på olika funktioner i koden
 import { useEffect, useState } from "react";
 import { useApi } from "@/context/ApiContext";
-import { ApiItem } from "@/types/api";
+import { Homepage } from "@/types/homepage";
 
 function HomePage() {
   //Denna delen kallar på API för att hämta informationen
   const { fetchPage, loading, error } = useApi();
-  const [settings, setSettings] = useState<ApiItem | null>(null);
+  const [settings, setSettings] = useState<Homepage | null>(null);
 
   useEffect(() => {
     async function fetchData() {
-      const items = await fetchPage("homePage");
+      const items = await fetchPage<Homepage>("homePage");
       // Filtrera på settingsPage
-      setSettings(items && items.length > 0 ? items[0]: null);
+      //setSettings(items && items.length > 0 ? items[0]: null);
+      if (items){
+        setSettings(items[0]);
+      }
     }
     fetchData();
   }, [fetchPage]);

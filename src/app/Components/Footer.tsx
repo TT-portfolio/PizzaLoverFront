@@ -43,7 +43,7 @@ function Footer() {
         <p>Fre-Sön: {settings.properties.frSu || "No Hours Available"}</p>
       </div>
   
-      {/* Right */}
+      {/* Right-side */}
       <div className="text-left space-y-2">
         <h3 className="font-bold text-xl">Information</h3>
         <p>Rullstolstillgängligt</p>

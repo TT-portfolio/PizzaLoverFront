@@ -1,8 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Map from "@/app/Components/Map";  
+import dynamic from "next/dynamic";
 import { useApi } from "@/context/ApiContext";
 import { FooterType } from "@/types/footer";
+
+const Map = dynamic(() => import("@/app/Components/Map"), { ssr: false });
 
 const HittaHitPage = () => {
   const { fetchPage, loading, error } = useApi();

@@ -8,5 +8,6 @@ export interface FooterType {
         phonenumber: string;
         moFri: string;
         frSu: string;
+        "hittahit": "/hittahit"
       };
 }

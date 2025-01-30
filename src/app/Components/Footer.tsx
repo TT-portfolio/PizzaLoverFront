@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useApi } from "@/context/ApiContext";
 import { FooterType } from "@/types/footer";
+import Link from "next/link";
 
 function Footer() {
   const { fetchPage, loading, error } = useApi();
@@ -26,48 +27,38 @@ function Footer() {
   if (!settings || !settings.properties) return null;
 
   return (
-    <footer className="bg-background text-color-text-green font-semibold text-lg border-4 border-dotted border-red-500 p-4">
-  <div className="container mx-auto py-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-      {/* Left */}
-      <div className="space-y-2">
-        <p>
-          {typeof settings.properties.adress === "string"
-            ? settings.properties.adress
-            : "No Adress Available"}
-        </p>
-        <p>
-          {typeof settings.properties.streetname === "string"
-            ? settings.properties.streetname
-            : "No Streetname Available"}
-        </p>
-        <p>
-          {typeof settings.properties.postalcode === "string"
-            ? settings.properties.postalcode
-            : "No Postal Code Available"}
-        </p>
-        <p>
-          {typeof settings.properties.phonenumber === "string"
-            ? settings.properties.phonenumber
-            : "No Phone Number Available"}
-        </p>
-      </div>
-
-      {/* Right */}
-      <div className="space-y-2">
-        <p>
-          {typeof settings.properties.moFri === "string"
-            ? settings.properties.moFri
-            : "No Opening Hours Available"}
-        </p>
-        <p>
-          {typeof settings.properties.frSu === "string"
-            ? settings.properties.frSu
-            : "No Opening Hours Available"}
-        </p>
-       
-      </div>
+<footer className="bg-background text-color-text-green font-semibold text-lg border-4 border-dotted border-red-500 p-3">
+  <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+    
+    {/* Left - Adress */}
+    <div className="text-left space-y-1">
+      <h3 className="font-bold text-lg">PIZZA LOVER</h3>
+      <p>{settings.properties.streetname || "No Streetname Available"}</p>
+      <p>{settings.properties.postalcode || "No Postal Code Available"}</p>
+      <p>{settings.properties.phonenumber || "No Phone Number Available"}</p>
     </div>
-  </footer>
+
+    {/* Middle - Öppettider */}
+    <div className="text-left space-y-1">
+      <h3 className="font-bold text-lg">Öppettider</h3>
+      <p>Mån-Tors: {settings.properties.moFri || "No Hours Available"}</p>
+      <p>Fre-Sön: {settings.properties.frSu || "No Hours Available"}</p>
+      <Link href="/hittahit" className="text-color-text-red hover:underline block">
+        Hitta hit
+      </Link>
+    </div>
+
+    {/* Right - Information */}
+    <div className="text-left space-y-1 sm:col-span-2 md:col-span-1">
+      <h3 className="font-bold text-lg">Information</h3>
+      <p>Rullstolstillgängligt</p>
+      <p>Fullständiga rättigheter</p>
+      <p>Uteservering</p>
+    </div>
+
+  </div>  
+</footer>
+
   );
 }
 

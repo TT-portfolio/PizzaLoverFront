@@ -25,18 +25,22 @@ const HittaHitPage = () => {
   if (!settings || !settings.properties) return <p>Ingen data tillgänglig</p>;
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center gap-6 p-6">
+    <div className="flex flex-col items-center justify-center gap-6 p-6 w-full">
       
-      <div className="text-color-text-red font-bold text-lg border-4 border-dotted border-color-text-green px-6 py-4 w-60 h-40 flex flex-col items-center justify-center mx-auto">
-      <h3 className="font-bold text-lg text-color-text-red">PIZZA LOVER</h3>
-        <p>{settings.properties.streetname || "No Streetname Available"}</p>
-        <p>{settings.properties.postalcode || "No Postal Code Available"}</p>
-        <p>{settings.properties.phonenumber || "No Phone Number Available"}</p>
-      </div>
+      <div className="flex flex-col items-center w-full max-w-3xl gap-4">
+        
+        {/* Responsive design */}
+        <div className="w-full mt-40 sm:mt-30 md:mt-20">
+          <Map />
+        </div>
+        
+        <div className="text-color-text-red font-bold text-lg border-4 border-dotted border-color-text-green px-6 py-4 w-full max-w-3xl flex flex-col items-center justify-center">
+          <h3 className="font-bold text-lg text-color-text-red">PIZZA LOVER</h3>
+          <p>{settings.properties.streetname || "No Streetname Available"}</p>
+          <p>{settings.properties.postalcode || "No Postal Code Available"}</p>
+          <p>{settings.properties.phonenumber || "No Phone Number Available"}</p>
+        </div>
 
-      {/* Karta */}
-      <div className="w-full md:w-2/3 h-[400px]">
-        <Map />
       </div>
 
     </div>

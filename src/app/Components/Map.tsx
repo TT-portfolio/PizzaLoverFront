@@ -1,11 +1,19 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 const position: [number, number] = [59.34542361958214, 18.023330097916755]; // Restaurant's coordinates
 
 const Map = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null; // Prevents rendering on the server
+
   return (
     <div className="relative w-full flex flex-col items-center">
       <MapContainer
@@ -30,9 +38,6 @@ const Map = () => {
           <Popup>Här ligger vår restaurang! 🍕</Popup>
         </CircleMarker>
       </MapContainer>
-
-      {/* Spacer to ensure footer is always visible */}
-      <div className="h-24"></div>
     </div>
   );
 };

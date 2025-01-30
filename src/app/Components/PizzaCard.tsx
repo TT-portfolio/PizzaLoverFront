@@ -21,7 +21,6 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
       fetchImageMetadata(imageUrl).then(setAltText);
     }
   }, [imageUrl])
-
   return (
     <div className="flex flex-col gap-0">
       <p className="text-color-text-red font-semibold p-0">{pizzaName}</p>

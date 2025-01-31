@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Pizza } from '@/types/pizza';
 import { fetchImageMetadata } from '@/context/fetchMetadata';
+import Image from 'next/image';
 
 
 interface PizzaCardProps {
@@ -28,7 +29,9 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
       <p className="font-medium">{pizzaPrice} :-</p>
 
       {imageUrl && (
-        <img src={imageUrl} alt={altText} 
+        <Image src={imageUrl} alt={altText} 
+        width={500}
+        height={500}
         className="w-40 h-40 object-cover rounded-md"/>
       )}
       <p>Alt Text: {altText}</p>

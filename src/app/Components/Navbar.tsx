@@ -28,8 +28,8 @@ export default function Navbar() {
                         
                         <Link href="/Menu"
                             className={`${pathname === "/Menu" ? "active" : ""}`}>Meny</Link>
-                        <Link href="/Settingspage"
-                            className={`${pathname === "/Settingspage" ? "active" : ""}`}>Settings</Link>
+                        {/* <Link href="/Settingspage"
+                            className={`${pathname === "/Settingspage" ? "active" : ""}`}>Settings</Link> */}
                     </ul>
                     {/* Hamburger Menu Button (for mobile) */}
                     <div className="md:hidden">
@@ -75,8 +75,8 @@ export default function Navbar() {
                             className={`${pathname === "/" ? "active" : ""}`}>Hem</Link>
                                 <Link href="/Menu"
                             className={`${pathname === "/Menu" ? "active" : ""}`}>Meny</Link>
-                                <Link href="/Settingspage"
-                            className={`${pathname === "/Settingspage" ? "active" : ""}`}>Settings</Link>
+                                {/* <Link href="/Settingspage"
+                            className={`${pathname === "/Settingspage" ? "active" : ""}`}>Settings</Link> */}
                             </ul>
                         ) : (
                             <ul className="hidden">

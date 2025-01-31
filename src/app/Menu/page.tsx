@@ -25,7 +25,7 @@ export default function Menu() {
   if (!pizzas.length) return <p>No pizzas found.</p>;
 
   return (
-    <div className="grid grid-cols m-4 gap-3">
+    <div className="grid grid-cols m-4 gap-3 sm:grid-cols-2">
       {pizzas.map((pizza) => (
         //Sending info to pizzaCard
           <PizzaCard key={pizza.id} pizza={pizza} />

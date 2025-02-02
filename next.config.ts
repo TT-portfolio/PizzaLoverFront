@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+        {
+            protocol: 'https',
+            hostname: 'pizzaloverstorage.blob.core.windows.net',
+            pathname: '/pizzalovercontainer/media/**',
+        },
+    ],
+},
 };
 
 export default nextConfig;

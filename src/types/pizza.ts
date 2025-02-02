@@ -16,7 +16,6 @@ export interface Pizza {
         pizzaName: string;
         pizzaPrice: number;
         image?: { url: string }[];
-        ham: string | null;
-        ost: string | null;
+        ingridienser?: string[];
     };
 }

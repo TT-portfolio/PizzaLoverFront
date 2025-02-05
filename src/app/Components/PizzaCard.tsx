@@ -2,22 +2,27 @@ import React, { useEffect, useState } from "react";
 import { Pizza } from "@/types/pizza";
 import { fetchImageMetadata } from "@/context/fetchMetadata";
 import Image from "next/image";
+import Button from "./button";
 
 interface PizzaCardProps {
     pizza: Pizza;
 }
 
 export default function PizzaCard({ pizza }: PizzaCardProps) {
-    const { pizzaName, pizzaDescription, pizzaPrice, image } = pizza.properties;
+    const { pizzaName, pizzaDescription, pizzaPrice, image, ingridienser } = pizza.properties;
     const baseUrl =
         "https://pizzaloverstorage.blob.core.windows.net/pizzalovercontainer";
 
     const imageFileName = image?.[0].url;
     const imageUrl = imageFileName ? `${baseUrl}${imageFileName}` : null;
-
+    const [ingridiens, setIngridiens] = useState(true);
     const [altText, setAltText] = useState<string>(
         imageFileName ? "Loading..." : "No alt text available"
     );
+
+    function handleClick() {
+        setIngridiens((prev) => !prev);
+    }
 
     useEffect(() => {
         if (imageUrl) {
@@ -34,7 +39,16 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
                         </p>
                         <p className="font-semibold">{pizzaPrice} :-</p>
                     </div>
-                    <p className="font-medium">{pizzaDescription}</p>
+                    <div>
+    {ingridiens ? (
+        <p className="font-medium">{pizzaDescription}</p>
+        )
+     : ( ingridienser?.map((ingrid, index) => <p key={index}>{ingrid}</p>
+        )
+    )}
+</div>
+
+                    <Button text="Ingridienser" onClick={handleClick} />
                 </div>
                 {imageUrl && (
                     <Image

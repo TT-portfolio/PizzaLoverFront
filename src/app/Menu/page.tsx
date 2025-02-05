@@ -28,7 +28,6 @@ export default function Menu() {
     return pizzas.filter((pizza) => {
       // Vi kollar på ingridienser under properties
       const ingList = pizza.properties.ingridienser;
-      console.log(ingList);
       if (!ingList) return false;
       return ingList.some((ing) =>
         ing.toLowerCase().includes(ingredientFilter.toLowerCase())

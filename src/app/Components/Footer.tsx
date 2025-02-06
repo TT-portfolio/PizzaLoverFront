@@ -27,12 +27,12 @@ function Footer() {
   if (!settings || !settings.properties) return null;
 
   return (
-<footer className="bg-background text-color-text-green font-semibold text-lg border-4 border-dotted border-red-500 p-3">
+<footer className="bg-background text-color-text-green font-mono font-bold text-lg border-4 border-dotted border-red-500 p-3">
   <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
     
     {/* Left - Adress */}
     <div className="text-left space-y-1">
-      <h3 className="font-bold text-lg">PIZZA LOVER</h3>
+      <h3 className="font-mono font-bold text-lg">PIZZA LOVER</h3>
       <p>{settings.properties.streetname || "No Streetname Available"}</p>
       <p>{settings.properties.postalcode || "No Postal Code Available"}</p>
       <p>{settings.properties.phonenumber || "No Phone Number Available"}</p>
@@ -40,7 +40,7 @@ function Footer() {
 
     {/* Middle - Öppettider */}
     <div className="text-left space-y-1">
-      <h3 className="font-bold text-lg">Öppettider</h3>
+      <h3 className="font-mono font-bold text-lg">Öppettider</h3>
       <p>Mån-Tors: {settings.properties.moFri || "No Hours Available"}</p>
       <p>Fre-Sön: {settings.properties.frSu || "No Hours Available"}</p>
       <Link href="/hittahit" className="text-color-text-red hover:underline block">
@@ -50,7 +50,7 @@ function Footer() {
 
     {/* Right - Information */}
     <div className="text-left space-y-1 sm:col-span-2 md:col-span-1">
-      <h3 className="font-bold text-lg">Information</h3>
+      <h3 className="font-mono font-bold text-lg">Information</h3>
       <p>Rullstolstillgängligt</p>
       <p>Fullständiga rättigheter</p>
       <p>Uteservering</p>

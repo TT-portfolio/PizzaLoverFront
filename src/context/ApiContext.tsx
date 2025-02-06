@@ -27,7 +27,7 @@ export function ApiProvider({ children }: ApiProviderProps) {
         try {
             const baseUrl = 'https://pizzalover-g7fnhxctfsfbe6c7.westeurope-01.azurewebsites.net/umbraco/delivery/api/v1/content';
             const url = contentType
-                ? `${baseUrl}?filter=contentType:${encodeURIComponent(contentType)}`
+                ? `${baseUrl}?filter=contentType:${encodeURIComponent(contentType)}&take=50`
                 : baseUrl;
 
             const res = await fetch(url);

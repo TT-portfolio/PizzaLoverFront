@@ -29,7 +29,7 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
             <div className="flex gap-2 justify-between w-full">
                 <div className="w-full">
                     <div className="flex justify-between sm:flex-col">
-                        <p className="text-color-text-red font-semibold p-0">
+                        <p data-test="pizzaName" className="text-color-text-red font-semibold p-0">
                             {pizzaName}
                         </p>
                         <p className="font-semibold">{pizzaPrice} :-</p>

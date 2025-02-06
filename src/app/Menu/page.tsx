@@ -45,6 +45,7 @@ export default function Menu() {
       {/* Filterfältet */}
       <div className="mb-4">
         <input
+        data-test="Search"
           type="text"
           placeholder="Filtrera på ingrediens t.ex. oxfile"
           value={ingredientFilter}

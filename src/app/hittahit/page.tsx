@@ -34,8 +34,8 @@ const HittaHitPage = () => {
           <Map />
         </div>
         
-        <div className="text-color-text-red font-bold text-lg border-4 border-dotted border-color-text-green px-6 py-4 w-full max-w-3xl flex flex-col items-center justify-center">
-          <h3 className="font-bold text-lg text-color-text-red">PIZZA LOVER</h3>
+        <div className="font-mono font-bold text-lg text-color-text-red border-4 border-dotted border-color-text-green px-6 py-4 w-full max-w-3xl flex flex-col items-center justify-center">
+          <h3 className="font-mono font-bold text-lg text-color-text-red">PIZZA LOVER</h3>
           <p>{settings.properties.streetname || "No Streetname Available"}</p>
           <p>{settings.properties.postalcode || "No Postal Code Available"}</p>
           <p>{settings.properties.phonenumber || "No Phone Number Available"}</p>

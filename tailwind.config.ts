@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
 export default {
   content: [
@@ -14,6 +15,9 @@ export default {
         "color-text-red": "var(--color-text-red)",
         "color-text-green": "var(--color-text-green)",
         "color-hamburger-bg": "#fdf1d2"
+      },
+      fontFamily: {
+        mono: ["var(--font-roboto-mono)", ...fontFamily.mono], 
       },
     },
   },

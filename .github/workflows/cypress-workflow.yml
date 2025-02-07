@@ -26,6 +26,7 @@ jobs:
         run: npx cypress run --headless
         env:
           BASE_URL: "http://localhost:3000"
+          # Kolla om detta kan funka
 
       - name: Upload Cypress failure artifacts
         if: failure()

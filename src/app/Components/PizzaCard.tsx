@@ -32,22 +32,23 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
     }
   }, [imageUrl]);
   return (
-    <div className="flex flex-col">
-      <span>------</span>
-      <div className="flex gap-2 justify-between w-full">
-        <div className="w-full flex flex-col gap-2">
-          <div className="flex justify-between">
+    <div className="flex flex-col ">
+      <div className="flex gap-2 justify-between w-full ">
+        <div data-test="pizzaCard" className="w-full flex flex-col gap-2 ">
+          <div className="flex justify-between ">
             <p
               data-test="pizzaName"
               className="text-color-text-red font-semibold p-0"
             >
               {pizzaName}
             </p>
-            <p className="font-semibold">{pizzaPrice} :-</p>
+            <p data-test="pizzaPrice" className="font-semibold">
+              {pizzaPrice}
+            </p>
           </div>
           <div className="flex justify-between">
             <div className="flex flex-col justify-between">
-              <div>
+              <div data-test="pizzaDescriptionOrIngredients">
                 {ingrid ? (
                   <p className="font-medium">{pizzaDescription}</p>
                 ) : (
@@ -63,6 +64,7 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
             </div>
             {imageUrl && (
               <Image
+                data-test="pizzaImage"
                 src={imageUrl}
                 alt={altText}
                 width={500}
@@ -76,5 +78,3 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
     </div>
   );
 }
-
-// lägger till en kommentar som test

@@ -55,7 +55,6 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
                     />
                 )}
             </div>
-            {/* <div className="h-px bg-gray-400"></div> */}
         </div>
     );
 }

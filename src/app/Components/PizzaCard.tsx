@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pizza } from "@/types/pizza";
 import { fetchImageMetadata } from "@/context/fetchMetadata";
 import Image from "next/image";
-import Button from "./button";
+import Button from "./Button";
 
 interface PizzaCardProps {
   pizza: Pizza;

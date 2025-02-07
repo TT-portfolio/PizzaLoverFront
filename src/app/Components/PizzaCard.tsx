@@ -36,8 +36,8 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
         <div className="flex flex-col">
             <div className="flex gap-2 justify-between w-full">
                 <div className="w-full">
-                    <div className="flex flex-col">
-                        <p className="text-color-text-red font-semibold p-0">
+                    <div className="flex justify-between sm:flex-col">
+                        <p data-test="pizzaName" className="text-color-text-red font-semibold p-0">
                             {pizzaName}
                         </p>
                         <p className="font-semibold">{pizzaPrice} :-</p>
@@ -55,7 +55,6 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
                     />
                 )}
             </div>
-            {/* <div className="h-px bg-gray-400"></div> */}
         </div>
     );
 }

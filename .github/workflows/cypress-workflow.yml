@@ -1,0 +1,29 @@
+name: Cypress Tests
+
+on:
+  pull_request:
+    branches:
+      - main  # Kör Cypress på PR:er mot main
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci  # Använd npm ci för snabbare installation
+
+      - name: Run Cypress tests against Staging
+        run: npx cypress run --headless
+        env:
+          BASE_URL: "https://nice-field-0563ff303.4.azurestaticapps.net"
+
+      - name: Upload Cypress failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-results
+          path: cypress/screenshots/

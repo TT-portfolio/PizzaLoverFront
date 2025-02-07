@@ -16,17 +16,10 @@ jobs:
       - name: Install dependencies
         run: npm ci  # Använd npm ci för snabbare installation
 
-      - name: Start local development server
-        run: npm run dev &
-      
-      - name: Wait for server to be ready
-        run: npx wait-on http://localhost:3000  # Väntar tills servern är uppe
-
-      - name: Run Cypress tests
+      - name: Run Cypress tests against Staging
         run: npx cypress run --headless
         env:
-          BASE_URL: "http://localhost:3000"
-          # Kolla om detta kan funka
+          BASE_URL: "https://pizzalover-g7fnhxctfsfbe6c7.westeurope-01.azurewebsites.net/"
 
       - name: Upload Cypress failure artifacts
         if: failure()

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pizza } from "@/types/pizza";
 import { fetchImageMetadata } from "@/context/fetchMetadata";
 import Image from "next/image";
-import Button from "./button";
+import Button from "../Components/Button";
 
 interface PizzaCardProps {
     pizza: Pizza;
@@ -20,8 +20,11 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
         imageFileName ? "Loading..." : "No alt text available"
     );
 
-    function handleClick() {
-        setIngridiens((prev) => !prev);
+    const [ingridienser, setIngridienser] = useState<boolean>(false);
+
+    const handleClick = () => {
+        setIngridienser(prevState => !prevState);
+        console.log(ingridienser)
     }
 
     useEffect(() => {
@@ -34,21 +37,13 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
             <div className="flex gap-2 justify-between w-full">
                 <div className="w-full">
                     <div className="flex justify-between sm:flex-col">
-                        <p className="text-color-text-red font-semibold p-0">
+                        <p data-test="pizzaName" className="text-color-text-red font-semibold p-0">
                             {pizzaName}
                         </p>
                         <p className="font-semibold">{pizzaPrice} :-</p>
                     </div>
-                    <div>
-    {ingridiens ? (
-        <p className="font-medium">{pizzaDescription}</p>
-        )
-     : ( ingridienser?.map((ingrid, index) => <p key={index}>{ingrid}</p>
-        )
-    )}
-</div>
-
-                    <Button text="Ingridienser" onClick={handleClick} />
+                            <Button label="Ingridienser" onClick={handleClick}/>
+                    <p className="font-medium">{pizzaDescription}</p>
                 </div>
                 {imageUrl && (
                     <Image
@@ -60,7 +55,6 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
                     />
                 )}
             </div>
-            {/* <div className="h-px bg-gray-400"></div> */}
         </div>
     );
 }

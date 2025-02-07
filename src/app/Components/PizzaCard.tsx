@@ -76,3 +76,5 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
     </div>
   );
 }
+
+// lägger till en kommentar som test

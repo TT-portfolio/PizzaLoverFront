@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pizza } from "@/types/pizza";
 import { fetchImageMetadata } from "@/context/fetchMetadata";
 import Image from "next/image";
+import Button from "../Components/Button";
 
 interface PizzaCardProps {
     pizza: Pizza;
@@ -19,6 +20,13 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
         imageFileName ? "Loading..." : "No alt text available"
     );
 
+    const [ingridienser, setIngridienser] = useState<boolean>(false);
+
+    const handleClick = () => {
+        setIngridienser(prevState => !prevState);
+        console.log(ingridienser)
+    }
+
     useEffect(() => {
         if (imageUrl) {
             fetchImageMetadata(imageUrl).then(setAltText);
@@ -34,6 +42,7 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
                         </p>
                         <p className="font-semibold">{pizzaPrice} :-</p>
                     </div>
+                            <Button label="Ingridienser" onClick={handleClick}/>
                     <p className="font-medium">{pizzaDescription}</p>
                 </div>
                 {imageUrl && (

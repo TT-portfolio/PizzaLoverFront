@@ -19,7 +19,7 @@ jobs:
       - name: Run Cypress tests against Staging
         run: npx cypress run --headless
         env:
-          BASE_URL: "https://pizzalover-g7fnhxctfsfbe6c7.westeurope-01.azurewebsites.net/"
+          BASE_URL: "https://nice-field-0563ff303.4.azurestaticapps.net"
 
       - name: Upload Cypress failure artifacts
         if: failure()

@@ -76,7 +76,7 @@ export default function Navbar() {
               <div
                 data-testid="mobile-menu"
                 className="md:hidden flex flex-col bg-color-hamburger-bg text-black font-semibold p-4 absolute top-20 right-4 left-1/2 text-center rounded-lg border-color-text-red border-2 border-dotted"
-                // onClick={() => setMenuOpen(!menuOpen)}
+                onClick={() => setMenuOpen(!menuOpen)}
               >
                 <Link
                   data-testid="mobile-menu-link"

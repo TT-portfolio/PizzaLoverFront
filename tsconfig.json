@@ -32,7 +32,8 @@
       "jest",
       "@types/jest",
       "@jest/globals",
-      "@testing-library/jest-dom"
+      "@testing-library/jest-dom",
+      "cypress"
     ]
   },
   "include": [

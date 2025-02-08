@@ -38,7 +38,7 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
           <div className="flex justify-between ">
             <p
               data-test="pizzaName"
-              className="text-color-text-red font-semibold p-0"
+              className="text-black font-semibold p-0"
             >
               {pizzaName}
             </p>

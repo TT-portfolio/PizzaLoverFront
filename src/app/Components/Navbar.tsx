@@ -19,7 +19,7 @@ export default function Navbar() {
                         </div>
                     </Link>
                     {/* Länkar från tablet och uppåt */}
-                    <ul className="hidden md:flex md:gap-4 md:pr-4 text-color-text-red font-semibold text-lg items-center content-center">
+                    <div className="hidden md:flex md:gap-4 md:pr-4 text-black font-semibold text-lg items-center content-center">
                         <Link
                             href="/"
                             className={`${pathname === "/" ? "active" : ""}`}>
@@ -36,12 +36,12 @@ export default function Navbar() {
                         </Link>
                         {/* <Link href="/Settingspage"
                             className={`${pathname === "/Settingspage" ? "active" : ""}`}>Settings</Link> */}
-                    </ul>
+                    </div>
                     {/* Hamburger Menu Button (for mobile) */}
                     <div className="md:hidden">
                         <button
                             onClick={() => setMenuOpen(!menuOpen)}
-                            className="text-color-text-red focus:outline-none w-full">
+                            className="text-black focus:outline-none w-full">
                             {menuOpen ? (
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +74,7 @@ export default function Navbar() {
                         </button>
 
                         {menuOpen ? (
-                            <ul
+                            <div
                                 className="md:hidden flex flex-col bg-color-hamburger-bg text-black font-semibold p-4 absolute top-20 right-4 left-1/2 text-center rounded-lg border-color-text-red border-2 border-dotted"
                                 onClick={() => setMenuOpen(!menuOpen)}>
                                 <Link
@@ -93,7 +93,7 @@ export default function Navbar() {
                                 </Link>
                                 {/* <Link href="/Settingspage"
                             className={`${pathname === "/Settingspage" ? "active" : ""}`}>Settings</Link> */}
-                            </ul>
+                            </div>
                         ) : (
                             <ul className="hidden"></ul>
                         )}

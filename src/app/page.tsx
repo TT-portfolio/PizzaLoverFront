@@ -34,7 +34,7 @@ function HomePage() {
     fetchData();
   }, [fetchPage]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <h1>Loading...</h1>;
   if (error) return <p>Error: {error}</p>;
   if (!settings || !settings.properties)
     return <p>No settings data available.</p>;
@@ -42,11 +42,11 @@ function HomePage() {
   return (
     //Här skriver man ut det som kommer ifrån API
     <div>
-      <h1 className="text-green-500 m-4">
+      <p className="text-green-500 m-4">
         {typeof settings.properties.pageTitle === "string"
           ? settings.properties.pageTitle
           : "Default Title"}
-      </h1>
+      </p>
     </div>
   );
 }

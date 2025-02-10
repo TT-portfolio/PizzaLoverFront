@@ -41,6 +41,7 @@ export default function Menu() {
 
   return (
     <div className="m-4">
+      <h1 className="text-2xl text-center">Våran underbara menu att välja ifrån</h1>
       {/* Filterfältet */}
       <div className="mb-4">
         <input
@@ -54,14 +55,14 @@ export default function Menu() {
       </div>
 
       {/* Lista med pizzor */}
-      <div className="grid grid-cols m-4 gap-3 md:grid-cols-2">
+      <div className="grid grid-cols gap-3 md:grid-cols-2">
         {filteredPizzas.map((pizza) => (
           <PizzaCard key={pizza.id} pizza={pizza} />
         ))}
       </div>
 
       {filteredPizzas.length === 0 && (
-        <p>Inga pizzor matchar dina filter.</p>
+        <p data-test="NoResult">Inga pizzor matchar dina filter.</p>
       )}
     </div>
   );

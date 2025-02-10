@@ -14,7 +14,8 @@ export default {
         foreground: "var(--foreground)",
         "color-text-red": "var(--color-text-red)",
         "color-text-green": "var(--color-text-green)",
-        "color-hamburger-bg": "#fdf1d2"
+        "color-hamburger-bg": "#fdf1d2",
+        "color-highlight": "#f7e6ba80"
       },
       fontFamily: {
         mono: ["var(--font-roboto-mono)", ...fontFamily.mono], 

@@ -30,6 +30,7 @@ export default function RootLayout({
           <Navbar />
           {/* Main content, för att lägga footern längst ner */}
           <main className="flex-grow">{children}</main>
+          
           <Footer />
         </ApiProvider>
       </body>

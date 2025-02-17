@@ -22,6 +22,11 @@ body {
   font-family: Roboto Mono, Arial, Helvetica, sans-serif;
 }
 
+main {
+  padding-top: 80px; /* Justera detta värde om det behövs */
+}
+
+
 .active {
   background-color: var(--color-text-red);
   color: black;

@@ -27,7 +27,7 @@ function Footer() {
   if (!settings || !settings.properties) return null;
 
   return (
-<footer className="bg-background text-color-text-green font-mono font-bold text-lg border-4 border-dotted border-red-500 p-3">
+<footer className="mt-40 bg-background text-color-text-green font-mono font-bold text-lg border-4 border-dotted border-red-500 p-3">
   <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
     
     {/* Left - Adress */}

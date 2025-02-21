@@ -5,6 +5,7 @@ export interface SideDish {
     sideDishPrice: number;
     sideDishIngredients?: string[];
     sideDishImage?: { url: string }[];
+    sideDishCategory?: string;
     sideDishDescription?: string;
   };
 }

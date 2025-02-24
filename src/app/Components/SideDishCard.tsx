@@ -57,7 +57,7 @@ export default function SideDishCard() {
                                 <h3 className="text-[var(--color-text-green)] font-bold text-lg uppercase">{category}</h3>
                                 <ul className="list-none text-[var(--foreground)] text-base leading-tight pl-3">
                                     {categorizedSideDishes[category].map((sideDish, index) => (
-                                        <li key={index} className="mt-1">• {sideDish.properties.sideDishName}</li>
+                                        <li key={index} className="mt-1"> {sideDish.properties.sideDishName}</li>
                                     ))}
                                 </ul>
                             </div>
@@ -73,7 +73,7 @@ export default function SideDishCard() {
                                 <h3 className="text-[var(--color-text-green)] font-bold text-lg uppercase">{category}</h3>
                                 <ul className="list-none text-[var(--foreground)] text-base leading-tight pl-3">
                                     {categorizedSideDishes[category].map((sideDish, index) => (
-                                        <li key={index} className="mt-1">• {sideDish.properties.sideDishName}</li>
+                                        <li key={index} className="mt-1 "> {sideDish.properties.sideDishName}: {sideDish.properties.sideDishIngredients}</li>
                                     ))}
                                 </ul>
                             </div>

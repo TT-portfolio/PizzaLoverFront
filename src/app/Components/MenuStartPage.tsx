@@ -33,7 +33,7 @@ export default function MenuStartPage() {
               key={pizza.id}
               href={`/Menu#${slugify(pizza.properties.pizzaName)}`}
             >
-             <div className="text-left w-full p-4 rounded-lg transform hover:scale-105 transition duration-300 cursor-pointer">
+             <div className="text-left w-full p-4 rounded-lg transform hover:scale-105 transition duration-300 cursor-pointer backface-hidden">
                 <h3 className="text-[var(--color-text-red)] font-bold text-xl">
                   {pizza.properties.pizzaName}
                 </h3>

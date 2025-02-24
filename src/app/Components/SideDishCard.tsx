@@ -63,8 +63,7 @@ export default function SideDishCard() {
                     {categorizedSideDishes[category].map((sideDish, index) => (
                       <li
                         key={index}
-                        className="mt-1 p-4 rounded-lg transform hover:scale-105 transition duration-300 cursor-pointer"
-                      >
+                        className="mt-1 p-4 rounded-lg transform hover:scale-105 transition duration-300 cursor-pointer backface-hidden">
                         {sideDish.properties.sideDishName}
                       </li>
                     ))}

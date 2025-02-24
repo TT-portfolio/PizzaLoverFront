@@ -33,3 +33,9 @@ main {
   padding: 5px;
   border-radius: 5px;
 }
+
+.backface-hidden {
+  backface-visibility: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+}

@@ -21,6 +21,8 @@ const eslintConfig = [
       "cypress/globals": true,
     },
   },
+  
 ];
+
 
 export default eslintConfig;

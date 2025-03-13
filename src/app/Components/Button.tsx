@@ -8,7 +8,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
     const buttonColors = {
         description: "bg-color-text-red active:bg-color-text-green sm:hover:bg-color-text-green",
-        purchase: "bg-green-500 hover:bg-green-600 text-white",
+        purchase: "bg-[var(--color-text-green)] hover:bg-[var(--green-hover)] text-white",
     };
 
     return (

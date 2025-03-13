@@ -14,6 +14,7 @@ export default {
         foreground: "var(--foreground)",
         "color-text-red": "var(--color-text-red)",
         "color-text-green": "var(--color-text-green)",
+        "green-hover": "var(--green-hover)",
         "color-hamburger-bg": "#fdf1d2",
         "color-highlight": "#f7e6ba80"
       },

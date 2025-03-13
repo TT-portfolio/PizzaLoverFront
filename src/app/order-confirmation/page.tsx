@@ -1,10 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-const OrderConfirmation: React.FC = () => {
+const OrderConfirmationContent: React.FC = () => {
   const searchParams = useSearchParams();
   const orderId = searchParams.get('orderId');
   const orderNo = searchParams.get('orderNo');
@@ -26,7 +26,6 @@ const OrderConfirmation: React.FC = () => {
   return (
     <div className="container mx-auto max-w-2xl p-4 mt-10">
       <div className="bg-white rounded-lg shadow-lg p-8 text-center border-2 border-[var(--color-text-green)]">
-        {/* Större och mer framträdande ikon */}
         <div className="flex justify-center mb-6">
           <div className="w-24 h-24 bg-[var(--color-text-green)] rounded-full flex items-center justify-center">
             <svg
@@ -45,10 +44,10 @@ const OrderConfirmation: React.FC = () => {
             </svg>
           </div>
         </div>
-        
+
         <h1 className="text-3xl font-bold mb-3 text-[var(--color-text-green)]">Tack för din beställning!</h1>
         <p className="text-gray-700 text-lg mb-6">Din beställning har tagits emot och bearbetas nu.</p>
-        
+
         <div className="mb-6 p-6 bg-[#f8f9fa] rounded-lg border border-gray-200">
           <p className="mb-3 text-lg">
             <span className="font-bold">Order nummer:</span> {orderNo}
@@ -58,13 +57,13 @@ const OrderConfirmation: React.FC = () => {
             <span className="font-mono text-gray-700">{orderId}</span>
           </p>
         </div>
-        
+
         <div className="p-4 bg-[#e8f5e9] rounded-lg mb-8 border border-[var(--color-text-green)]">
           <p className="text-[var(--color-text-green)] font-semibold text-lg">
             Din beställning kommer att vara klar för avhämtning inom ca 30 minuter.
           </p>
         </div>
-        
+
         <Link href="/Menu">
           <button className="bg-[var(--color-text-red)] text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-[#e00f32] transition-colors">
             Tillbaka till menyn
@@ -75,4 +74,11 @@ const OrderConfirmation: React.FC = () => {
   );
 };
 
-export default OrderConfirmation;
+const OrderConfirmationPage: React.FC = () => (
+  <Suspense fallback={<div>Laddar beställning...</div>}>
+    <OrderConfirmationContent />
+  </Suspense>
+);
+
+export default OrderConfirmationPage;
+

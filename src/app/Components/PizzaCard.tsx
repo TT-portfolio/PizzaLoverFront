@@ -72,6 +72,7 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
                     </div>
                     <div className="flex justify-between items-center">
                         <Button
+                         data-test="toggleButton"
                             label={
                                 ingrid ? "Ingridienser" : "Beskrivning"
                             }

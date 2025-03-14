@@ -39,9 +39,10 @@ export const createOrder = async (order: Order): Promise<OrderResponse> => {
 export const transformOrderData = (order: Order) => {
   return {
     customer: {
-      name: order.customer.name,
+      firstName: order.customer.firstName,
+      lastName: order.customer.lastName,
       email: order.customer.email || '',
-      phone: order.customer.phone || '',
+      phoneNumber: order.customer.phoneNumber || '',
       address: order.customer.address || '',
     },
     items: order.items.map(item => ({
@@ -51,3 +52,4 @@ export const transformOrderData = (order: Order) => {
     }))
   };
 };
+

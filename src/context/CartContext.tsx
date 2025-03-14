@@ -10,9 +10,10 @@ export interface CartItem {
 }
 
 export interface Customer {
-  name: string;
+  firstName: string;
+  lastName: string;
   email?: string;
-  phone?: string;
+  phoneNumber?: string;
   address?: string;
 }
 
@@ -43,7 +44,7 @@ interface CartProviderProps {
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
-  const [customer, setCustomer] = useState<Customer>({ name: '' });
+  const [customer, setCustomer] = useState<Customer>({ firstName: '', lastName: '' });
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 

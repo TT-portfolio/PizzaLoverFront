@@ -61,7 +61,7 @@ export default function SideDishCard() {
   }, {} as { [key: string]: SideDish[] });
 
   return (
-    <Link href="/Menu" data-testid="side-dish-link">
+    <Link href="/Menu" aria-label="Gå till menyn" data-testid="side-dish-link">
       <div
         className="relative max-w-[1000px] mx-auto px-12 py-16 mb-32 border-[3px] border-dashed border-green-700"
         data-test="sideDishesSection"

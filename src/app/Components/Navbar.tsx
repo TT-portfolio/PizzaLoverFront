@@ -16,18 +16,18 @@ export default function Navbar() {
         <div className="flex items-center h-16 justify-between">
           {/* Logo */}
           <div className="text-xl font-bold text-color-text-red">
-            <Link href="/">Logo</Link>
+            <Link href="/" aria-label="Gå till startsida">Logo</Link>
           </div>
 
           {/* Länkar från tablet och uppåt */}
           <div className="hidden md:flex md:gap-4 md:pr-4 text-black font-semibold text-lg items-center content-center">
-            <Link href="/" className={`${pathname === "/" ? "active" : ""}`}>
+            <Link href="/" aria-label="Gå till startsida" className={`${pathname === "/" ? "active" : ""}`}>
               Hem
             </Link>
 
             <Link
               data-test="Menu"
-              href="/Menu"
+              href="/Menu" aria-label="Gå till meny"
               className={`${pathname === "/Menu" ? "active" : ""}`}
             >
               Meny
@@ -35,7 +35,7 @@ export default function Navbar() {
 
             {/* Cart icon desktop */}
             <Link
-              href="/cart"
+              href="/cart" aria-label="Gå till kundvagn"
               className="relative flex items-center"
             >
               <svg

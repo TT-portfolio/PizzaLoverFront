@@ -43,7 +43,7 @@ function Footer() {
       <h2 className="font-mono font-bold text-lg">Öppettider</h2>
       <p>Mån-Tors: {settings.properties.moFri || "No Hours Available"}</p>
       <p>Fre-Sön: {settings.properties.frSu || "No Hours Available"}</p>
-      <Link href="/hittahit" className="text-black hover:underline block">
+      <Link href="/hittahit" aria-label="Gå till karta" className="text-black hover:underline block">
         Hitta hit
       </Link>
     </div>

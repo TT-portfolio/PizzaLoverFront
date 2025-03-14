@@ -14,7 +14,7 @@ const OrderConfirmationContent: React.FC = () => {
       <div className="container mx-auto max-w-2xl p-4 text-center">
         <h1 className="text-2xl font-bold mb-4">Order Information Saknas</h1>
         <p className="mb-4">Vi kunde inte hitta din beställningsinformation.</p>
-        <Link href="/menu">
+        <Link href="/menu" aria-label="Gå till kundvagn">
           <button className="bg-[var(--color-text-red)] text-white px-4 py-2 rounded hover:bg-[#e00f32] transition-colors">
             Tillbaka till menyn
           </button>
@@ -64,7 +64,7 @@ const OrderConfirmationContent: React.FC = () => {
           </p>
         </div>
 
-        <Link href="/Menu">
+        <Link href="/Menu" aria-label="Gå till kundvagn">
           <button className="bg-[var(--color-text-red)] text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-[#e00f32] transition-colors">
             Tillbaka till menyn
           </button>

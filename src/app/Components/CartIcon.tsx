@@ -8,7 +8,7 @@ const CartIcon: React.FC = () => {
   const { totalItems, totalPrice } = useCart();
 
   return (
-    <Link href="/cart">
+    <Link href="/cart" aria-label="Gå till kundvagn">
       <div className="relative flex items-center cursor-pointer">
         <svg 
           xmlns="http://www.w3.org/2000/svg" 

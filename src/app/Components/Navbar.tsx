@@ -44,6 +44,7 @@ export default function Navbar() {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                 aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -67,6 +68,7 @@ export default function Navbar() {
             <Link
               href="/cart"
               className="relative flex items-center mr-4"
+              aria-label="Kundvagn" 
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

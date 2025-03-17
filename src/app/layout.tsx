@@ -5,6 +5,7 @@ import { ApiProvider } from "@/context/ApiContext";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import PizzaLoader from "./Components/Loader";
 
 const robotoMono = Roboto_Mono({
   weight: ["400", "700"],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <CartProvider>
           <ApiProvider>
             <Navbar />
+            <PizzaLoader />
             {/* Main content, för att lägga footern längst ner */}
             <main className="flex-grow">
               {children}

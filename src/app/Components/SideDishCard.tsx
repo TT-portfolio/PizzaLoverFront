@@ -32,7 +32,7 @@ export default function SideDishCard() {
 
   // If data is still loading
   if (loading) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   // If there was an error during fetch

@@ -1,15 +1,26 @@
-import { act, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import Navbar from "@/app/Components/Navbar";
-import { usePathname } from "next/navigation";
-import { axe, toHaveNoViolations } from "jest-axe";
+import { act, render, screen } from "@testing-library/react"; 
+import userEvent from "@testing-library/user-event"; 
+import Navbar from "@/app/Components/Navbar"; 
+import { usePathname } from "next/navigation"; 
+import { axe, toHaveNoViolations } from "jest-axe"; 
+import { CartProvider } from "@/context/CartContext";
+import React, { ReactElement } from 'react'; // Import ReactElement type
 
 expect.extend(toHaveNoViolations);
 
-// Mockar 'usePathname' för att kunna styra aktiv länk i testet
+// Mock 'usePathname' to control active link in tests
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
 }));
+
+// Helper function with proper TypeScript typing
+const renderWithProviders = (ui: ReactElement) => {
+  return render(
+    <CartProvider>
+      {ui}
+    </CartProvider>
+  );
+};
 
 describe("Navbar Component", () => {
   beforeEach(() => {
@@ -17,13 +28,14 @@ describe("Navbar Component", () => {
   });
 
   it("renders the navbar correctly", () => {
-    render(<Navbar />);
+    renderWithProviders(<Navbar />);
     expect(screen.getByText("Logo")).toBeInTheDocument();
     expect(screen.getByText("Hem")).toBeInTheDocument();
     expect(screen.getByText("Meny")).toBeInTheDocument();
   });
+  
   it("Has correct links", () => {
-    render(<Navbar />);
+    renderWithProviders(<Navbar />);
     expect(screen.getByText("Logo")).toHaveAttribute("href", "/");
     expect(screen.getByText("Hem")).toHaveAttribute("href", "/");
     expect(screen.getByText("Meny")).toHaveAttribute("href", "/Menu");
@@ -31,12 +43,12 @@ describe("Navbar Component", () => {
 
   it("Highlight the active link", () => {
     (usePathname as jest.Mock).mockReturnValue("/Menu");
-    render(<Navbar />);
+    renderWithProviders(<Navbar />);
     expect(screen.getByText("Meny")).toHaveClass("active");
   });
 
   it("Opens and closes the mobile menu", async () => {
-    render(<Navbar />);
+    renderWithProviders(<Navbar />);
     const user = userEvent.setup();
 
     // Simulate mobile view
@@ -49,8 +61,9 @@ describe("Navbar Component", () => {
     // Click to open hamburger menu
     const menuButton = screen.getByRole("button");
     await act(async () => {
-        await user.click(menuButton);
+      await user.click(menuButton);
     });
+    
     // awaiting hamburger menu to open
     await screen.findByTestId("mobile-menu");
 
@@ -65,7 +78,6 @@ describe("Navbar Component", () => {
     const homeLink = screen.getAllByTestId("mobile-menu-link")[0];
     const menuLink = screen.getAllByTestId("mobile-menu-link")[1];
     
-
     expect(homeLink).toHaveAttribute("href", "/");
     expect(menuLink).toHaveAttribute("href", "/Menu");
 
@@ -73,16 +85,16 @@ describe("Navbar Component", () => {
     expect(homeLink).toHaveClass("active");
     expect(menuLink).not.toHaveClass("active");
 
-
     // click to close hamburger menu
     await act(async () => {
-        await user.click(menuButton);});
+      await user.click(menuButton);
+    });
     expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
   });
 
-  it("Has no accessibility violations", async () =>{
-      const {container} = render(<Navbar/>);
-      const results = await axe(container);
-      expect(results).toHaveNoViolations();
+  it("Has no accessibility violations", async () => {
+    const { container } = renderWithProviders(<Navbar />);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

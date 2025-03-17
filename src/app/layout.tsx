@@ -4,6 +4,7 @@ import "./globals.css";
 import { ApiProvider } from "@/context/ApiContext";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import { CartProvider } from "@/context/CartContext";
 
 const robotoMono = Roboto_Mono({
   weight: ["400", "700"],
@@ -18,21 +19,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${robotoMono.variable} antialiased flex flex-col min-h-screen`}
-      >
-        <ApiProvider>
-          <Navbar />
-          {/* Main content, för att lägga footern längst ner */}
-          <main className="flex-grow">{children}</main>
-          
-          <Footer />
-        </ApiProvider>
+      <body className={`${robotoMono.variable} antialiased flex flex-col min-h-screen`}>
+        <CartProvider>
+          <ApiProvider>
+            <Navbar />
+            {/* Main content, för att lägga footern längst ner */}
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </ApiProvider>
+        </CartProvider>
       </body>
     </html>
   );

@@ -15,7 +15,7 @@ describe("PizzaCard Component", () => {
     it("Is toggle between ingridiens and description working", () => {
         cy.getByData("pizzaCard").eq(0)
         .within(()=> {
-            cy.getByData("toggleButton").click()
+            cy.getByData("toggleButton").click({ multiple: true })
             .should("contain.text", "Ingridienser")
             .should("not.contain.text", "Beskrivning")
         })

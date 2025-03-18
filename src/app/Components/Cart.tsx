@@ -67,7 +67,7 @@ const Cart: React.FC = () => {
   };
 
   const handleCheckout = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault();    
     
     // Validate form
     const isValid = validateForm();
@@ -127,8 +127,8 @@ const Cart: React.FC = () => {
       <h1 className="text-2xl font-bold mb-6">Din kundvagn</h1>
       
       {items.length === 0 ? (
-        <div className="text-center py-8">
-          <p className="text-gray-500">Din kundvagn är tom</p>
+        <div className="py-8">
+          <p className="text-gray-800">Din kundvagn är tom</p>
         </div>
       ) : (
         <>
@@ -137,7 +137,7 @@ const Cart: React.FC = () => {
               <div key={item.id} className="flex justify-between items-center p-4 border-b">
                 <div className="flex-1">
                   <h3 className="font-medium">{item.name}</h3>
-                  <p className="text-gray-600">{item.price.toFixed(2)} kr</p>
+                  <p className="text-gray-800">{item.price.toFixed(2)} kr</p>
                 </div>
                 
                 <div className="flex items-center space-x-3">
@@ -180,7 +180,7 @@ const Cart: React.FC = () => {
           
           <form onSubmit={handleCheckout} className="bg-white rounded-lg shadow-md p-6" noValidate>
             <h2 className="text-xl font-bold mb-4">Dina uppgifter</h2>
-            <p className="text-sm text-gray-600 mb-4">Fält markerade med <span className="text-red-500">*</span> är obligatoriska</p>
+            <p className="text-sm text-gray-800 mb-4">Fält markerade med <span className="text-red-500">*</span> är obligatoriska</p>
             
             {error && (
               <div className="bg-red-100 border-2 border-red-500 text-red-700 px-4 py-3 rounded-md mb-4">
@@ -195,7 +195,7 @@ const Cart: React.FC = () => {
             )}
             
             <div className="mb-4">
-              <label className={`block text-gray-700 mb-2 ${requiredFieldStyle}`} htmlFor="firstName">
+              <label className={`block text-gray-800 mb-2 ${requiredFieldStyle}`} htmlFor="firstName">
                 Förnamn
               </label>
               <input
@@ -215,7 +215,7 @@ const Cart: React.FC = () => {
             </div>
 
             <div className="mb-4">
-              <label className={`block text-gray-700 mb-2 ${requiredFieldStyle}`} htmlFor="lastName">
+              <label className={`block text-gray-800 mb-2 ${requiredFieldStyle}`} htmlFor="lastName">
                 Efternamn
               </label>
               <input
@@ -235,7 +235,7 @@ const Cart: React.FC = () => {
             </div>
             
             <div className="mb-4">
-              <label className={`block text-gray-700 mb-2 ${requiredFieldStyle}`} htmlFor="phoneNumber">
+              <label className={`block text-gray-800 mb-2 ${requiredFieldStyle}`} htmlFor="phoneNumber">
                 Telefon
               </label>
               <input
@@ -255,7 +255,7 @@ const Cart: React.FC = () => {
             </div>
             
             <div className="mb-4">
-              <label className={`block text-gray-700 mb-2 ${requiredFieldStyle}`} htmlFor="email">
+              <label className={`block text-gray-800 mb-2 ${requiredFieldStyle}`} htmlFor="email">
                 E-post
               </label>
               <input
@@ -275,7 +275,7 @@ const Cart: React.FC = () => {
             </div>
             
             <div className="mb-6">
-              <label className={`block text-gray-700 mb-2 ${requiredFieldStyle}`} htmlFor="address">
+              <label className={`block text-gray-800 mb-2 ${requiredFieldStyle}`} htmlFor="address">
                 Adress
               </label>
               <input

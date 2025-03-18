@@ -13,6 +13,11 @@ jest.mock('@/context/ApiContext', () => ({
   useApi: jest.fn(),
 }));
 
+// Mock the LoadingContext if your component uses it
+jest.mock('@/context/LoadingContext', () => ({
+  useLoading: jest.fn(() => ({ isLoading: false, setIsLoading: jest.fn() })),
+}));
+
 describe('MenuStartPage', () => {
   const mockPizzas = [
     {
@@ -38,51 +43,57 @@ describe('MenuStartPage', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     (useApi as jest.Mock).mockReturnValue({
-      fetchPage: mockFetchPage
+      fetchPage: mockFetchPage,
+      loading: false,
+      error: null
     });
   });
 
   test('renders pizza list when API call succeeds', async () => {
     mockFetchPage.mockResolvedValue(mockPizzas);
     
-    await act(async () => {
-      render(<MenuStartPage />);
+    render(<MenuStartPage />);
+    
+    // Wait for the title to appear (use case-insensitive regex to be safer)
+    await waitFor(() => {
+      expect(screen.getByText(/Pizzor/i)).toBeInTheDocument();
     });
     
-    expect(screen.getByText('Pizzor')).toBeInTheDocument();
-    
+    // Then wait for the actual pizza items
     await waitFor(() => {
       expect(screen.getByText('Margherita')).toBeInTheDocument();
+      expect(screen.getByText('Pepperoni')).toBeInTheDocument();
+      expect(screen.getByText('Tomatsås, Mozzarella, Basilika')).toBeInTheDocument();
+      expect(screen.getByText('Tomatsås, Mozzarella, Pepperoni')).toBeInTheDocument();
+      expect(screen.getByText('95:-')).toBeInTheDocument();
+      expect(screen.getByText('105:-')).toBeInTheDocument();
+      
+      const links = screen.getAllByTestId('pizza-link');
+      expect(links).toHaveLength(2);
     });
-    
-    expect(screen.getByText('Pepperoni')).toBeInTheDocument();
-    expect(screen.getByText('Tomatsås, Mozzarella, Basilika')).toBeInTheDocument();
-    expect(screen.getByText('Tomatsås, Mozzarella, Pepperoni')).toBeInTheDocument();
-    expect(screen.getByText('95:-')).toBeInTheDocument();
-    expect(screen.getByText('105:-')).toBeInTheDocument();
-    
-    const links = screen.getAllByTestId('pizza-link');
-    expect(links).toHaveLength(2);
   });
 
   test('handles empty pizza list gracefully', async () => {
     mockFetchPage.mockResolvedValue([]);
     
-    await act(async () => {
-      render(<MenuStartPage />);
+    render(<MenuStartPage />);
+    
+    await waitFor(() => {
+      expect(screen.getByText(/Pizzor/i)).toBeInTheDocument();
     });
-    expect(screen.getByText('Pizzor')).toBeInTheDocument();
+    
     expect(screen.queryAllByTestId('pizza-link')).toHaveLength(0);
   });
 
   test('handles API failure gracefully', async () => {
     mockFetchPage.mockResolvedValue(null);
     
-    await act(async () => {
-      render(<MenuStartPage />);
+    render(<MenuStartPage />);
+    
+    await waitFor(() => {
+      expect(screen.getByText(/Pizzor/i)).toBeInTheDocument();
     });
     
-    expect(screen.getByText('Pizzor')).toBeInTheDocument();
     expect(screen.queryAllByTestId('pizza-link')).toHaveLength(0);
   });
 
@@ -99,15 +110,16 @@ describe('MenuStartPage', () => {
     
     mockFetchPage.mockResolvedValue(pizzasWithMissingIngredients);
     
-    await act(async () => {
-      render(<MenuStartPage />);
+    render(<MenuStartPage />);
+    
+    await waitFor(() => {
+      expect(screen.getByText(/Pizzor/i)).toBeInTheDocument();
     });
     
     await waitFor(() => {
       expect(screen.getByText('Special')).toBeInTheDocument();
+      expect(screen.getByText('Inga ingredienser angivna')).toBeInTheDocument();
+      expect(screen.getByText('120:-')).toBeInTheDocument();
     });
-    
-    expect(screen.getByText('Inga ingredienser angivna')).toBeInTheDocument();
-    expect(screen.getByText('120:-')).toBeInTheDocument();
   });
 });

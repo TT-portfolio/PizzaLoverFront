@@ -50,12 +50,9 @@ const OrderConfirmationContent: React.FC = () => {
 
         <div className="mb-6 p-6 bg-[#f8f9fa] rounded-lg border border-gray-200">
           <p className="mb-3 text-lg">
-            <span className="font-bold">Order nummer:</span> {orderNo}
+            <span className="font-bold">Ordernummer:</span> {orderNo}
           </p>
-          <p className="text-lg">
-            <span className="font-bold">Order ID:</span> 
-            <span className="font-mono text-gray-700">{orderId}</span>
-          </p>
+       
         </div>
 
         <div className="p-4 bg-[#e8f5e9] rounded-lg mb-8 border border-[var(--color-text-green)]">

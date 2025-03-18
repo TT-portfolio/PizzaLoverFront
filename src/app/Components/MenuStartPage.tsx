@@ -3,10 +3,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useApi } from "@/context/ApiContext";
 import { Pizza } from "@/types/pizza";
+import { useLoading } from "@/context/LoadingContext";
 
 export default function MenuStartPage() {
   const { fetchPage } = useApi();
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
+  const { isPageLoading } = useLoading();
 
   useEffect(() => {
     async function fetchPizzas() {
@@ -17,6 +19,11 @@ export default function MenuStartPage() {
     }
     fetchPizzas();
   }, [fetchPage]);
+
+  // Only render content when page is not loading
+  if (isPageLoading) {
+    return null;
+  }
 
   return (
     <div className="flex justify-center pb-20">

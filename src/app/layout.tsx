@@ -6,6 +6,7 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import { CartProvider } from "@/context/CartContext";
 import PizzaLoader from "./Components/Loader";
+import { LoadingProvider } from "@/context/LoadingContext";
 
 const robotoMono = Roboto_Mono({
   weight: ["400", "700"],
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${robotoMono.variable} antialiased flex flex-col min-h-screen`}>
+        <LoadingProvider>
         <CartProvider>
           <ApiProvider>
             <Navbar />
@@ -37,6 +39,7 @@ export default function RootLayout({
             <Footer />
           </ApiProvider>
         </CartProvider>
+        </LoadingProvider>
       </body>
     </html>
   );

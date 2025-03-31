@@ -63,7 +63,7 @@ export default function SideDishCard() {
   return (
     <Link href="/Menu" aria-label="Gå till menyn" data-testid="side-dish-link">
       <div
-        className="relative max-w-[1000px] mx-auto px-12 py-16 mb-32 border-[3px] border-dashed border-green-700"
+        className="relative max-w-[1000px] mx-auto px-12 py-16 mb-32 border-[3px] border-dashed border-color-text-green"
         data-test="sideDishesSection"
       >
         <h2 className="absolute -top-6 left-1/2 transform -translate-x-1/2 px-4 bg-[var(--background)] text-[var(--color-text-green)] text-4xl font-semibold">

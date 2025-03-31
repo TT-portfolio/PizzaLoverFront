@@ -1,14 +1,13 @@
 "use client";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useApi } from "@/context/ApiContext";
 import { Pizza } from "@/types/pizza";
-import { useLoading } from "@/context/LoadingContext";
 
 export default function MenuStartPage() {
   const { fetchPage } = useApi();
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
-  const { isPageLoading } = useLoading();
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchPizzas() {
@@ -20,10 +19,14 @@ export default function MenuStartPage() {
     fetchPizzas();
   }, [fetchPage]);
 
-  // Only render content when page is not loading
-  if (isPageLoading) {
-    return null;
-  }
+  // Anpassad navigeringsfunktion
+  const handlePizzaClick = (pizzaId: string) => {
+    // Navigera först till menysidan
+    router.push("/Menu");
+    
+    // Sedan använd localStorage för att spara vilket pizza-ID som valdes
+    localStorage.setItem("selectedPizzaId", pizzaId);
+  };
 
   return (
     <div className="flex justify-center pb-20">
@@ -33,7 +36,12 @@ export default function MenuStartPage() {
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-32 gap-y-10 px-4 w-full justify-items-start">
           {pizzas.map((pizza) => (
-            <Link key={pizza.id} href="/Menu" data-testid="pizza-link">
+            <div 
+              key={pizza.id} 
+              onClick={() => handlePizzaClick(pizza.id)}
+              data-testid="pizza-link"
+              className="cursor-pointer"
+            >
               <div className="text-left w-full p-4 rounded-lg transform hover:scale-105 transition duration-300 cursor-pointer backface-hidden">
                 <h3 className="text-[var(--color-text-red)] font-bold text-xl">
                   {pizza.properties.pizzaName}
@@ -46,7 +54,7 @@ export default function MenuStartPage() {
                   {pizza.properties.pizzaPrice}:-
                 </p>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

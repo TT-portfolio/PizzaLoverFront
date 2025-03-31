@@ -20,6 +20,23 @@ export default function Menu() {
     }
     fetchData();
   }, [fetchPage]);
+  
+  useEffect(() => {
+    if (typeof window !== 'undefined' && pizzas.length > 0) {
+      const selectedPizzaId = localStorage.getItem("selectedPizzaId");
+      if (selectedPizzaId) {
+
+        setTimeout(() => {
+          const pizzaElement = document.getElementById(`pizza-${selectedPizzaId}`);
+          if (pizzaElement) {
+            pizzaElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+
+            localStorage.removeItem("selectedPizzaId");
+          }          
+        }, 10);
+      }
+    }
+  }, [pizzas]);
 
   // Memoiserad filtrerad lista baserat på ingredientFilter
   const filteredPizzas = useMemo(() => {

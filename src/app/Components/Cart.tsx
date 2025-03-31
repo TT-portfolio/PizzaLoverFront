@@ -124,7 +124,7 @@ const Cart: React.FC = () => {
   
   return (
     <div className="container mx-auto max-w-2xl p-4">
-      <h1 className="text-2xl font-bold mb-6">Din kundvagn</h1>
+      <h1 className="text-2xl font-bold mb-6 text-gray-800">Din kundvagn</h1>
       
       {items.length === 0 ? (
         <div className="py-8">

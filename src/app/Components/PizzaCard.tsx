@@ -44,7 +44,7 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
     }, [imageUrl]);
     
     return (
-        <div data-test="pizzaCard" className="w-full flex flex-col gap-2">
+        <div id={`pizza-${pizza.id}`} data-test="pizzaCard" className="w-full flex flex-col gap-2 scroll-mt-32">
             <div className="flex justify-between bg-color-highlight rounded-md p-1 px-2 font-semibold">
                 <p data-test="pizzaName" className="text-black p-0">
                     {pizzaName}
@@ -72,7 +72,6 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
                     </div>
                     <div className="flex justify-between items-center">
                         <Button
-                         data-test="toggleButton"
                             label={
                                 ingrid ? "Ingridienser" : "Beskrivning"
                             }
@@ -81,16 +80,16 @@ export default function PizzaCard({ pizza }: PizzaCardProps) {
                         />
                         
                         <div className="flex items-center">
-                            <div className="flex border border-[var(--color-text-green)] rounded-md mr-2">
+                            <div className="flex border rounded mr-2">
                                 <button
-                                    className="px-2 py-1 text-[var(--color-text-green)] font-semibold"
+                                    className="px-2 py-1"
                                     onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
                                 >
                                     -
                                 </button>
-                                <span className="px-3 py-1 border-x border-[var(--color-text-green)] text-center">{quantity}</span>
+                                <span className="px-2">{quantity}</span>
                                 <button
-                                    className="px-2 py-1 text-[var(--color-text-green)] font-semibold"
+                                    className="px-2 py-1"
                                     onClick={() => setQuantity(prev => prev + 1)}
                                 >
                                     +

@@ -46,7 +46,7 @@ const OrderConfirmationContent: React.FC = () => {
         </div>
 
         <h1 className="text-3xl font-bold mb-3 text-[var(--color-text-green)]">Tack för din beställning!</h1>
-        <p className="text-gray-700 text-lg mb-6">Din beställning har tagits emot och bearbetas nu.</p>
+        <p className="text-gray-800 text-lg mb-6">Din beställning har tagits emot och bearbetas nu.</p>
 
         <div className="mb-6 p-6 bg-[#f8f9fa] rounded-lg border border-gray-200">
           <p className="mb-3 text-lg">

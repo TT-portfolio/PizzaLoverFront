@@ -125,6 +125,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
   const clearCart = () => {
     setItems([]);
+    setCustomer({ firstName: '', lastName: '', email: '', phoneNumber: '', address: ''  }); // Reset customer info too
+    localStorage.removeItem('pizzaCart');
+    localStorage.removeItem('pizzaCustomer'); 
   };
 
   const updateCustomer = (newCustomer: Customer) => {

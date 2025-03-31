@@ -61,7 +61,7 @@ const PizzaLoader = () => {
             </g>
         </svg>
 
-        <p className="text-3xl font-bold text-gray-700 ml-6">Loading...</p>
+        <p className="text-3xl font-bold text-gray-800 ml-6">Loading...</p>
       </div>
 
       <style jsx global>{`

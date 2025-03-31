@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useApi } from "@/context/ApiContext";
 import { Pizza } from "@/types/pizza";
@@ -7,7 +7,6 @@ import { Pizza } from "@/types/pizza";
 export default function MenuStartPage() {
   const { fetchPage } = useApi();
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
-  const router = useRouter();
 
   useEffect(() => {
     async function fetchPizzas() {
@@ -19,13 +18,15 @@ export default function MenuStartPage() {
     fetchPizzas();
   }, [fetchPage]);
 
-  // Anpassad navigeringsfunktion
+  // Anpassad navigation utan useRouter
   const handlePizzaClick = (pizzaId: string) => {
-    // Navigera först till menysidan
-    router.push("/Menu");
-    
-    // Sedan använd localStorage för att spara vilket pizza-ID som valdes
-    localStorage.setItem("selectedPizzaId", pizzaId);
+    if (typeof window !== 'undefined') {
+      // Spara pizza-ID i localStorage
+      localStorage.setItem("selectedPizzaId", pizzaId);
+      
+      // Navigera till menysidan
+      window.location.href = "/Menu";
+    }
   };
 
   return (
@@ -40,7 +41,7 @@ export default function MenuStartPage() {
               key={pizza.id} 
               onClick={() => handlePizzaClick(pizza.id)}
               data-testid="pizza-link"
-              className="cursor-pointer"
+              className="cursor-pointer w-full"
             >
               <div className="text-left w-full p-4 rounded-lg transform hover:scale-105 transition duration-300 cursor-pointer backface-hidden">
                 <h3 className="text-[var(--color-text-red)] font-bold text-xl">

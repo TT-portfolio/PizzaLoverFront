@@ -21,6 +21,7 @@ export default function Menu() {
     fetchData();
   }, [fetchPage]);
   
+  //Scroll effect, the user scrolls to selected pizza from startpage
   useEffect(() => {
     if (typeof window !== 'undefined' && pizzas.length > 0) {
       const selectedPizzaId = localStorage.getItem("selectedPizzaId");

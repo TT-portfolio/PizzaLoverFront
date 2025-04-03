@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
+import { useLoading } from '@/context/LoadingContext';
 import { createOrder } from '@/types/cartApi';
 import CartButton from './CartButton';
 
 const Cart: React.FC = () => {
+  const { setIsPageLoading } = useLoading();
   const { items, customer, totalPrice, updateCustomer, clearCart, updateQuantity, removeFromCart } = useCart();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -18,6 +20,14 @@ const Cart: React.FC = () => {
     email: false
   });
   const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, [setIsPageLoading]);
 
   const handleCustomerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

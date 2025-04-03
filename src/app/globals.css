@@ -46,3 +46,16 @@ main {
   will-change: transform;
   transform: translateZ(0);
 }
+
+@keyframes slowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: slowSpin 8s linear infinite;
+}

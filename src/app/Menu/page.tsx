@@ -3,35 +3,53 @@
 import React, { useState, useEffect, useMemo } from "react";
 import PizzaCard from "../Components/PizzaCard";
 import { Pizza } from "@/types/pizza";
+import { useLoading } from '@/context/LoadingContext';
 import { useApi } from "@/context/ApiContext";
 
 export default function Menu() {
   const { fetchPage, loading, error } = useApi();
+  const { setIsPageLoading } = useLoading(); // Lägg till detta
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
   const [ingredientFilter, setIngredientFilter] = useState<string>("");
 
+  // Lägg till detta useEffect för att hantera laddningstillståndet
   useEffect(() => {
+    const startTime = Date.now();
+    setIsPageLoading(true);
+    
     async function fetchData() {
-      // Hämtar alla pizzaObj via din ApiContext
-      const items = await fetchPage<Pizza>("pizzaObj");
-      if (items) {
-        setPizzas(items);
+      try {
+        // Hämtar alla pizzaObj via din ApiContext
+        const items = await fetchPage<Pizza>("pizzaObj");
+        if (items) {
+          setPizzas(items);
+        }
+      } finally {
+        const elapsedTime = Date.now() - startTime;
+        const minDisplayTime = 500; // Minimum 500ms display time
+        
+        if (elapsedTime < minDisplayTime) {
+          setTimeout(() => {
+            setIsPageLoading(false);
+          }, minDisplayTime - elapsedTime);
+        } else {
+          setIsPageLoading(false);
+        }
       }
     }
+    
     fetchData();
-  }, [fetchPage]);
+  }, [fetchPage, setIsPageLoading]); // Lägg till setIsPageLoading i dependency array
   
   //Scroll effect, the user scrolls to selected pizza from startpage
   useEffect(() => {
     if (typeof window !== 'undefined' && pizzas.length > 0) {
       const selectedPizzaId = localStorage.getItem("selectedPizzaId");
       if (selectedPizzaId) {
-
         setTimeout(() => {
           const pizzaElement = document.getElementById(`pizza-${selectedPizzaId}`);
           if (pizzaElement) {
             pizzaElement.scrollIntoView({behavior: 'smooth', block: 'start'});
-
             localStorage.removeItem("selectedPizzaId");
           }          
         }, 10);
@@ -53,9 +71,8 @@ export default function Menu() {
     });
   }, [pizzas, ingredientFilter]);
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
-  if (!pizzas.length) return <p>No pizzas found.</p>;
+  if (!pizzas.length && !loading) return <p>No pizzas found.</p>;
 
   return (
     <div className="m-4">

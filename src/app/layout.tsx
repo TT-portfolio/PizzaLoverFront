@@ -7,6 +7,7 @@ import Footer from "./Components/Footer";
 import { CartProvider } from "@/context/CartContext";
 import PizzaLoader from "./Components/Loader";
 import { LoadingProvider } from "@/context/LoadingContext";
+import OrderNotification from "./Components/OrderNotification";
 
 const robotoMono = Roboto_Mono({
   weight: ["400", "700"],
@@ -37,6 +38,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <OrderNotification />
           </ApiProvider>
         </CartProvider>
         </LoadingProvider>

@@ -1,6 +1,7 @@
 'use client'
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Pizza } from "@/types/pizza";
+import { isVisible } from '@testing-library/user-event/dist/cjs/utils/index.js';
 
 export interface CartItem {
   id: string;
@@ -34,6 +35,12 @@ interface CartContextType {
   updateCustomer: (customer: Customer) => void;
   totalItems: number;
   totalPrice: number;
+  notification: {
+    isVisible: boolean;
+    itemName: string;
+    itemQuantity: number;
+  };
+  hideNotification: () => void; 
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -47,6 +54,11 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [customer, setCustomer] = useState<Customer>({ firstName: '', lastName: '' });
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [notification, setNotification] = useState ({
+    isVisible: false,
+    itemName: '',
+    itemQuantity: 0
+  });
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -98,11 +110,33 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
           ...updatedItems[existingItemIndex],
           quantity: updatedItems[existingItemIndex].quantity + newItem.quantity
         };
+
+        setNotification ({
+          isVisible: true,
+          itemName: newItem.name,
+          itemQuantity: newItem.quantity
+        });
+
         return updatedItems;
       } else {
         // Add new item
+        // Show notification
+
+        setNotification({
+          isVisible: true,
+          itemName: newItem.name,
+          itemQuantity: newItem.quantity
+        });
+
         return [...prevItems, newItem];
       }
+    });
+  };
+
+  const hideNotification = () => {
+    setNotification({
+      ...notification,
+      isVisible: false
     });
   };
 
@@ -144,7 +178,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       clearCart,
       updateCustomer,
       totalItems,
-      totalPrice
+      totalPrice,
+      notification,
+      hideNotification
     }}>
       {children}
     </CartContext.Provider>
